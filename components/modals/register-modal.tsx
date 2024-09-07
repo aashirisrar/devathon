@@ -5,6 +5,10 @@ import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+
+import useRegisterModal from "@/app/hooks/useRegisterModals";
+import useLoginModal from "@/app/hooks/useLoginModal";
+
 import {
   Form,
   FormControl,
@@ -18,7 +22,6 @@ import Modal from "@/components/modals/modal";
 import Heading from "@/components/hero-heading";
 import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
-import { signIn } from "next-auth/react";
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
@@ -27,7 +30,6 @@ const RegisterModal = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const formSchema = z.object({
-    username: z.string().min(2).max(25),
     email: z.string().includes("@", { message: "Enter a valid email address" }),
     password: z.string(),
   });
@@ -35,7 +37,6 @@ const RegisterModal = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
       email: "",
       password: "",
     },
@@ -67,8 +68,8 @@ const RegisterModal = () => {
   const description = (
     <Heading
       center
-      title="Welcome to Portfolio"
-      subtitle="Create an account!"
+      title="Welcome to PatientCo. Admin"
+      subtitle="Create a new account!"
     />
   );
 
@@ -83,19 +84,6 @@ const RegisterModal = () => {
               <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input disabled={isLoading} required {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
-              <FormControl>
-                <Input disabled={isLoading} {...field} required />
               </FormControl>
               <FormMessage />
             </FormItem>
