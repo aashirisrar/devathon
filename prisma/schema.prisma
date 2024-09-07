@@ -1,0 +1,131 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  name           String?
+  email          String?   @unique
+  emailVerified  DateTime?
+  image          String?
+  hashedPassword String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  favoriteIds    String[]  @db.ObjectId
+
+  accounts     Account[]
+}
+
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.String
+  access_token      String? @db.String
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.String
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Doctor {
+  id            String          @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  email         String          @unique
+  specialization String
+  phone         String
+  image         String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  appointments  Appointment[]
+  patients      Patient[] @relation("DoctorPatients")
+  medicalRecords MedicalRecord[]
+}
+
+model Patient {
+  id             String        @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  email          String        @unique
+  phone          String
+  dateOfBirth    DateTime
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  appointments   Appointment[]
+  medicalRecords MedicalRecord[]
+  doctor         Doctor?       @relation("DoctorPatients", fields: [doctorId], references: [id])
+  doctorId       String?       @db.ObjectId
+}
+
+model Appointment {
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  doctorId      String     @db.ObjectId
+  patientId     String     @db.ObjectId
+  date          DateTime
+  status        String
+
+  doctor        Doctor     @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  patient       Patient    @relation(fields: [patientId], references: [id], onDelete: Cascade)
+}
+
+model MedicalRecord {
+  id            String          @id @default(auto()) @map("_id") @db.ObjectId
+  patientId     String          @db.ObjectId
+  doctorId      String?         @db.ObjectId
+  recordType    String
+  description   String
+  images        String[]
+  createdAt     DateTime        @default(now())
+
+  patient       Patient         @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  doctor        Doctor?         @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  medicalHistories MedicalHistory[]
+  prescriptions Prescription[]
+  testResults   TestResult[]
+}
+
+model MedicalHistory {
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  medicalRecordId String   @db.ObjectId
+  condition      String
+  details        String
+  createdAt      DateTime  @default(now())
+
+  medicalRecord  MedicalRecord @relation(fields: [medicalRecordId], references: [id], onDelete: Cascade)
+}
+
+model Prescription {
+  id             String      @id @default(auto()) @map("_id") @db.ObjectId
+  medicalRecordId String     @db.ObjectId
+  medication     String
+  dosage         String
+  frequency      String
+  duration       String
+  createdAt      DateTime    @default(now())
+
+  medicalRecord  MedicalRecord @relation(fields: [medicalRecordId], references: [id], onDelete: Cascade)
+}
+
+model TestResult {
+  id             String      @id @default(auto()) @map("_id") @db.ObjectId
+  medicalRecordId String     @db.ObjectId
+  testName       String
+  result         String
+  date           DateTime
+  createdAt      DateTime    @default(now())
+
+  medicalRecord  MedicalRecord @relation(fields: [medicalRecordId], references: [id], onDelete: Cascade)
+}
