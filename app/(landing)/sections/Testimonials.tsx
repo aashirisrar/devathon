@@ -80,7 +80,7 @@ export const Testimonials = () => {
         heading="What our healthcare professionals say"
         subHeading="From improved patient management to streamlined processes, our system has become indispensable to healthcare providers worldwide."
       />
-      <div className="h-[750px] flex flex-row gap-6 mt-10 justify-center [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)]">
+      <div className="h-[750px] flex flex-row gap-6 mt-10 justify-center [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] overflow-hidden">
         <TestimonialCardColumn
           movementDuration={15}
           testimonials={testimonialsColumnOne}

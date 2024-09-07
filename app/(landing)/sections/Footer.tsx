@@ -12,7 +12,7 @@ import Logo from "@/public/assets/logosaas.png";
 
 export const Footer = () => {
   return (
-    <section className="xl:px-96 lg:px-20 py-[40px] px-5 bg-black leading-5 text-[14px] text-[#BCBCBC]">
+    <section className="xl:px-96 lg:px-20 py-[40px] px-5 leading-5 text-[14px] text-[#BCBCBC]">
       <div className="flex flex-col items-center justify-center gap-6">
         <Link
           href={"#"}
@@ -26,7 +26,7 @@ export const Footer = () => {
             src={Logo}
           />
         </Link>
-        <div className="flex flex-col items-center justify-center gap-6 text-[14px] leading-[20px]">
+        <div className="flex flex-row items-center justify-center gap-6 text-[14px] leading-[20px]">
           <Link href="#">About</Link>
           <Link href="#product">Features</Link>
           <Link href="#pricing">Pricing</Link>

@@ -13,7 +13,7 @@ const INFO = ({ p1, p2, p3, p4 }) => (
 
 const Footer = () => {
   return (
-    <div className="flex flex-col items-center justify-center bg-gray-900 py-12 px-4">
+    <div className="flex flex-row items-center justify-center py-12 px-4">
       <div className="w-full text-center mb-12">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
           Do you want to step into the future before others
