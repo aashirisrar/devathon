@@ -4,6 +4,8 @@ import { getPatients } from "@/app/actions/getPatients";
 
 import Heading from "@/components/HeroHeading";
 
+import PatientClient from "./PatientClient";
+
 const page = async () => {
   const currentUser = await getCurrentUser();
   const patients = await getPatients(currentUser?.id);
