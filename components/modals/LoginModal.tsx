@@ -126,7 +126,7 @@ const LoginModal = () => {
       mt-4 font-light"
       >
         <div className="justify-center flex md:flex-row flex-col items-center gap-2">
-          <div>First time using Portfolio?</div>
+          <div>First time using Patient Co.</div>
           <div
             onClick={toggle}
             className="text-neutral-800

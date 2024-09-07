@@ -70,7 +70,7 @@ const RegisterModal = () => {
   const description = (
     <Heading
       center
-      title="Welcome to Portfolio"
+      title="Welcome to Patient Co."
       subtitle="Create an account!"
     />
   );
