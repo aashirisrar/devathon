@@ -8,7 +8,7 @@ import PatientClient from "./PatientClient";
 
 const page = async () => {
   const currentUser = await getCurrentUser();
-  const patients = await getPatients(currentUser?.id);
+  const patients = [];
 
   return (
     <div className="p-6">
