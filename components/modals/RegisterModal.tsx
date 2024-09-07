@@ -32,7 +32,6 @@ const RegisterModal = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const formSchema = z.object({
-    username: z.string().min(2).max(25),
     email: z.string().includes("@", { message: "Enter a valid email address" }),
     password: z.string(),
   });
@@ -40,7 +39,6 @@ const RegisterModal = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
       email: "",
       password: "",
     },
@@ -95,19 +93,6 @@ const RegisterModal = () => {
         />
         <FormField
           control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
-              <FormControl>
-                <Input disabled={isLoading} {...field} required />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
           name="password"
           render={({ field }) => (
             <FormItem>
@@ -131,18 +116,6 @@ const RegisterModal = () => {
   const footerContent = (
     <div className="flex flex-col gap-4 mt-3">
       <hr />
-      <ButtonOld
-        outline
-        label="Continue with Google"
-        icon={FcGoogle}
-        onClick={() => signIn("google")}
-      />
-      <ButtonOld
-        outline
-        label="Continue with Github"
-        icon={AiFillGithub}
-        onClick={() => signIn("github")}
-      />
       <div
         className="text-neutral-500 text-center
       mt-4 font-light"
