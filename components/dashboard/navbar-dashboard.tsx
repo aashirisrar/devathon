@@ -59,7 +59,7 @@ const NavbarDashboard: React.FC<NavbarDashboardProps> = ({
               className="flex items-center gap-2 text-lg font-semibold mb-2"
             >
               <Package2 className="h-6 w-6" />
-              <span className="sr-only">Portfolio Inc</span>
+              <span className="sr-only">Patient Co.</span>
             </Link>
             {routes.map((route) => (
               <Link
@@ -77,28 +77,6 @@ const NavbarDashboard: React.FC<NavbarDashboardProps> = ({
               </Link>
             ))}
           </nav>
-          {!isPro && (
-            <div className="mt-auto">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Upgrade to Pro</CardTitle>
-                  <CardDescription>
-                    Unlock all features and get unlimited access to our support
-                    team.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Button
-                    size="sm"
-                    className="w-full"
-                    onClick={() => proModal.onOpen()}
-                  >
-                    Upgrade
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
-          )}
           {currentUser?.username && (
             <div
               className={cn(

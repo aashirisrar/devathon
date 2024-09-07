@@ -13,9 +13,8 @@ import { cn } from "@/lib/utils";
 const dmSans = DM_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Portfolio Generator App",
-  description:
-    "Create stunning, personalized portfolio websites effortlessly with our Portfolio Generator App. Customize and showcase your projects, skills, and achievements with ease. Ideal for developers, designers, and creatives seeking a professional online presence. No coding required.",
+  title: "Patient Co.",
+  description: "Easily manage your patients.",
 };
 
 export default async function RootLayout({

@@ -36,14 +36,14 @@ export const routes = [
     href: "/dashboard",
   },
   {
-    label: "Theme",
+    label: "Appointments",
     icon: PanelTop,
-    href: "/theme",
+    href: "/appointments",
   },
   {
-    label: "Your Profile",
+    label: "Patients",
     icon: UserRound,
-    href: "/profile",
+    href: "/patients",
   },
   {
     label: "Settings",
@@ -78,7 +78,7 @@ const SidebarDashboard: React.FC<SidebarDashboardProps> = ({
           className="flex items-center gap-2 font-semibold"
         >
           <Package2 className="h-6 w-6" />
-          <span className="">Portfolio Inc</span>
+          <span className="">Patient Co.</span>
         </Link>
         <Button variant="outline" size="icon" className="ml-auto h-8 w-8">
           <Bell className="h-4 w-4" />
@@ -104,28 +104,6 @@ const SidebarDashboard: React.FC<SidebarDashboardProps> = ({
           ))}
         </nav>
       </div>
-      {currentUser?.username && !isPro && (
-        <div className="mt-auto p-4">
-          <Card x-chunk="dashboard-02-chunk-0">
-            <CardHeader className="p-2 pt-0 md:p-4">
-              <CardTitle>Upgrade to Pro</CardTitle>
-              <CardDescription>
-                Unlock all features and get unlimited access to our support
-                team.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="p-2 pt-0 md:p-4 md:pt-0">
-              <Button
-                size="sm"
-                className="w-full"
-                onClick={() => proModal.onOpen()}
-              >
-                Upgrade
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-      )}
       {currentUser?.username && (
         <div className="cursor-pointer shadow-sm border mx-4 mb-3 mt-auto p-3 bg-card rounded-lg relative">
           <div
