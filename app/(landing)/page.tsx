@@ -1,23 +1,25 @@
-// "use client";
-// import { MainNavigationMenu } from "@/components/navbar";
-// import Hero from "@/components/hero";
-// import Navbar from "../../components/Navbar/Navbar"
-// import Header from "../../components/Header/Header"
-// import Testimonials from "../../components/Testimonials/Testimonials"
-// import Stats from "../../components/Stats/Stats"
-// import ContactUs from "../../components/ContactUs/ContactPage"
-// // import Footer from "../../components/Footer/Footer";
-// export default function Home() {
-//   return (
-//     <div className="">
+import Navbar from "./sections/Navbar";
+import { Hero } from "./sections/Hero";
+import { LogoTicker } from "./sections/LogoTicker";
+import { ProductShowcase } from "./sections/ProductShowcase";
+import { Pricing } from "./sections/Pricing";
+import { Testimonials } from "./sections/Testimonials";
+import { CallToAction } from "./sections/CallToAction";
+import { Footer } from "./sections/Footer";
 
-//       <Navbar />
-//       <Header />
-//       <Testimonials />
-// <Stats />
-// <ContactUs />
-// {/* <Footer /> */}
+const Home = () => {
+  return (
+    <div className="bg-[#EAEEFE]">
+      <Navbar />
+      <Hero />
+      <LogoTicker />
+      <ProductShowcase />
+      <Pricing />
+      <Testimonials />
+      <CallToAction />
+      <Footer />
+    </div>
+  );
+};
 
-//     </div>
-//   );
-// }
+export default Home;

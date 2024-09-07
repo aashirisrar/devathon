@@ -1,24 +1,35 @@
-import { Inter } from "next/font/google";
-import RegisterModal from "@/components/modals/register-modal";
-import LoginModal from "@/components/modals/login-modal";
+import type { Metadata } from "next";
+import { DM_Sans } from "next/font/google";
+import "@/app/globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+import ToasterProvider from "@/app/providers/ToasterProvider";
 
-export const metadata = {
-  title: "Patient Co.",
-  description: "Mangage your doctors and patients effectively.",
+import LoginModal from "@/components/modals/LoginModal";
+import RegisterModal from "@/components/modals/RegisterModal";
+import { ProModal } from "@/components/dashboard/pro-modal";
+
+import { cn } from "@/lib/utils";
+
+const dmSans = DM_Sans({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "Portfolio Generator App",
+  description:
+    "Create stunning, personalized portfolio websites effortlessly with our Portfolio Generator App. Customize and showcase your projects, skills, and achievements with ease. Ideal for developers, designers, and creatives seeking a professional online presence. No coding required.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <RegisterModal />
+    <html lang="en" className="relative">
+      <body className={cn(dmSans.className, "antialiased")}>
+        <ToasterProvider />
         <LoginModal />
+        <RegisterModal />
+        <ProModal />
         {children}
       </body>
     </html>

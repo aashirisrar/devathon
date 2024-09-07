@@ -1,0 +1,155 @@
+import { NextResponse } from "next/server";
+import prisma from "@/lib/prismadb"
+
+import { getCurrentUser } from "@/app/actions/getCurrentUser";
+
+export async function POST(request: Request) {
+    try {
+        const currentUser = await getCurrentUser();
+
+        if (!currentUser) return NextResponse.error();
+
+        const body = await request.json();
+
+        const {
+            navbar,
+            navbarLogoText,
+            navbarLinkText1,
+            navbarLink1,
+            navbarLinkText2,
+            navbarLink2,
+            navbarLinkText3,
+            navbarLink3,
+            resumeText,
+            resumeLink,
+            hero,
+            heroTagText,
+            heroPrimaryButtonText,
+            heroPrimaryButtonLink,
+            heroSecondaryButtonText,
+            heroSecondaryButtonLink,
+            heroText,
+            heroDescriptionText,
+            heroImage,
+            project,
+            projectSectionTagText,
+            projectSectionHeading,
+            projectSectionBodyText,
+            projectText1,
+            projectBody1,
+            projectLink1,
+            projectImage1,
+            projectText2,
+            projectBody2,
+            projectLink2,
+            projectImage2,
+            footer,
+            footerText,
+            footerBodyText,
+            footerLinkText1,
+            footerLink1,
+            footerLinkText2,
+            footerLink2,
+            footerLinkText3,
+            footerLink3,
+            footerCopyrightText,
+        } = body;
+
+        const options = await prisma.option.upsert({
+            where: {
+                userId: currentUser.id
+            },
+            update: {
+                navbar,
+                navbarLogoText,
+                navbarLinkText1,
+                navbarLink1,
+                navbarLinkText2,
+                navbarLink2,
+                navbarLinkText3,
+                navbarLink3,
+                resumeText,
+                resumeLink,
+                hero,
+                heroTagText,
+                heroPrimaryButtonText,
+                heroPrimaryButtonLink,
+                heroSecondaryButtonText,
+                heroSecondaryButtonLink,
+                heroText,
+                heroDescriptionText,
+                heroImage,
+                project,
+                projectSectionTagText,
+                projectSectionHeading,
+                projectSectionBodyText,
+                projectText1,
+                projectBody1,
+                projectLink1,
+                projectImage1,
+                projectText2,
+                projectBody2,
+                projectLink2,
+                projectImage2,
+                footer,
+                footerText,
+                footerBodyText,
+                footerLinkText1,
+                footerLink1,
+                footerLinkText2,
+                footerLink2,
+                footerLinkText3,
+                footerLink3,
+                footerCopyrightText,
+            },
+            create: {
+                navbar,
+                navbarLogoText,
+                navbarLinkText1,
+                navbarLink1,
+                navbarLinkText2,
+                navbarLink2,
+                navbarLinkText3,
+                navbarLink3,
+                resumeText,
+                resumeLink,
+                hero,
+                heroTagText,
+                heroPrimaryButtonText,
+                heroPrimaryButtonLink,
+                heroSecondaryButtonText,
+                heroSecondaryButtonLink,
+                heroText,
+                heroDescriptionText,
+                heroImage,
+                project,
+                projectSectionTagText,
+                projectSectionHeading,
+                projectSectionBodyText,
+                projectText1,
+                projectBody1,
+                projectLink1,
+                projectImage1,
+                projectText2,
+                projectBody2,
+                projectLink2,
+                projectImage2,
+                footer,
+                footerText,
+                footerBodyText,
+                footerLinkText1,
+                footerLink1,
+                footerLinkText2,
+                footerLink2,
+                footerLinkText3,
+                footerLink3,
+                footerCopyrightText,
+                userId: currentUser.id
+            }
+        })
+
+        return NextResponse.json(options)
+    } catch (error) {
+        return NextResponse.error()
+    }
+}
