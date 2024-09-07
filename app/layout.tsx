@@ -5,8 +5,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Temperature Converter App",
-  description: "Convert temperatures between Celsius and Fahrenheit.",
+  title: "Patient Co.",
+  description: "Mangage your doctors and patients effectively.",
 };
 
 export default function RootLayout({
