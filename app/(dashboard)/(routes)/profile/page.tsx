@@ -17,10 +17,8 @@ const ProfilePage = async () => {
 
   return (
     <section className="p-10 space-y-6">
-      <Heading title="Your Profile" subtitle="Manage your subscriptions." />
-      <div className="space-y-4">
-        {currentUser?.name}
-      </div>
+      <Heading title="Your Profile" subtitle="Manage your profile." />
+      <div className="space-y-4">Email: {currentUser?.email}</div>
     </section>
   );
 };
