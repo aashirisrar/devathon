@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -12,6 +6,7 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
 
 model User {
   id             String    @id @default(auto()) @map("_id") @db.ObjectId
@@ -22,10 +17,9 @@ model User {
   hashedPassword String?
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
-  username       String?   @unique
+  favoriteIds    String[]  @db.ObjectId
 
-  accounts Account[]
-  options  Option[]
+  accounts     Account[]
 }
 
 model Account {
@@ -47,60 +41,93 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
-model Option {
-  id                      String   @id @default(auto()) @map("_id") @db.ObjectId
-  navbar                  Boolean? @default(true)
-  navbarLogoText          String?
-  navbarLinkText1         String?
-  navbarLink1             String?
-  navbarLinkText2         String?
-  navbarLink2             String?
-  navbarLinkText3         String?
-  navbarLink3             String?
-  resumeText              String?
-  resumeLink              String?
-  hero                    Boolean? @default(true)
-  heroTagText             String?
-  heroPrimaryButtonText   String?
-  heroPrimaryButtonLink   String?
-  heroSecondaryButtonText String?
-  heroSecondaryButtonLink String?
-  heroText                String?
-  heroDescriptionText     String?
-  heroImage               String?
-  project                 Boolean? @default(true)
-  projectSectionTagText   String?
-  projectSectionHeading   String?
-  projectSectionBodyText  String?
-  projectText1            String?
-  projectBody1            String?
-  projectLink1            String?
-  projectImage1           String?
-  projectText2            String?
-  projectBody2            String?
-  projectLink2            String?
-  projectImage2           String?
-  footer                  Boolean? @default(true)
-  footerText              String?
-  footerBodyText          String?
-  footerLinkText1         String?
-  footerLink1             String?
-  footerLinkText2         String?
-  footerLink2             String?
-  footerLinkText3         String?
-  footerLink3             String?
-  footerCopyrightText     String?
-  userId                  String   @unique @db.ObjectId
-  theme                   String?  @default("Default")
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+model Doctor {
+  id            String          @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  email         String          @unique
+  specialization String
+  phone         String
+  image         String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  appointments  Appointment[]
+  patients      Patient[] @relation("DoctorPatients")
+  medicalRecords MedicalRecord[] // This is the missing relation field
 }
 
-model UserSubscription {
-  id                     String    @id @default(auto()) @map("_id") @db.ObjectId
-  userId                 String    @unique
-  stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
-  stripeSubscritionId    String?   @unique @map(name: "stripe_subscription_id")
-  stripePriceId          String?   @map(name: "stripe_price_id")
-  stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
+model Patient {
+  id             String        @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  email          String        @unique
+  phone          String
+  dateOfBirth    DateTime
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  appointments   Appointment[]
+  medicalRecords MedicalRecord[]
+  doctor         Doctor?       @relation("DoctorPatients", fields: [doctorId], references: [id])
+  doctorId       String?       @db.ObjectId
+}
+
+model Appointment {
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  doctorId      String     @db.ObjectId
+  patientId     String     @db.ObjectId
+  date          DateTime
+  status        String
+
+  doctor        Doctor     @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  patient       Patient    @relation(fields: [patientId], references: [id], onDelete: Cascade)
+}
+
+model MedicalRecord {
+  id            String          @id @default(auto()) @map("_id") @db.ObjectId
+  patientId     String          @db.ObjectId
+  doctorId      String?         @db.ObjectId
+  recordType    String
+  description   String
+  images        String[]
+  createdAt     DateTime        @default(now())
+
+  patient       Patient         @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  doctor        Doctor?         @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  medicalHistories MedicalHistory[]
+  prescriptions Prescription[]
+  testResults   TestResult[]
+}
+
+model MedicalHistory {
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  medicalRecordId String   @db.ObjectId
+  condition      String
+  details        String
+  createdAt      DateTime  @default(now())
+
+  medicalRecord  MedicalRecord @relation(fields: [medicalRecordId], references: [id], onDelete: Cascade)
+}
+
+model Prescription {
+  id             String      @id @default(auto()) @map("_id") @db.ObjectId
+  medicalRecordId String     @db.ObjectId
+  medication     String
+  dosage         String
+  frequency      String
+  duration       String
+  createdAt      DateTime    @default(now())
+
+  medicalRecord  MedicalRecord @relation(fields: [medicalRecordId], references: [id], onDelete: Cascade)
+}
+
+model TestResult {
+  id             String      @id @default(auto()) @map("_id") @db.ObjectId
+  medicalRecordId String     @db.ObjectId
+  testName       String
+  result         String
+  date           DateTime
+  createdAt      DateTime    @default(now())
+
+  medicalRecord  MedicalRecord @relation(fields: [medicalRecordId], references: [id], onDelete: Cascade)
 }
