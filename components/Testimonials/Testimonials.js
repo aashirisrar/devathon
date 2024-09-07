@@ -2,10 +2,10 @@ import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './Testimonials.css';
-import img from '../../assets/Ashley.jpeg';
-import img1 from '../../assets/Brad.jpeg';
-import img2 from '../../assets/Van.jpeg';
-
+import img from '../../public/assets/ai.png';
+import img1 from '../../public/assets/ai.png';
+import img2 from '../../public/assets/ai.png';
+import Image from 'next/image'
 const Testimonials = () => {
     const testimonials = [
         {
@@ -44,7 +44,7 @@ const Testimonials = () => {
                         <p className="testimonial-text">"{testimonial.text}"</p>
                         <div className="author-info">
                             <div className="author-logo-container">
-                                <img src={testimonial.logo} alt={`${testimonial.author} Logo`} className="author-logo" />
+                                <Image src={testimonial.logo} alt={`${testimonial.author} Logo`} className="author-logo" />
                             </div>
                             <div className="author-details">
                                 <h4 className="author-name">{testimonial.author}</h4>
