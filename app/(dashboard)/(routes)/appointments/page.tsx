@@ -1,7 +1,9 @@
 import React from "react";
 
 const page = async () => {
-  return <div>page</div>;
+  const appointments = await getAppointments();
+
+  return <div><AppointmentClient appointments={appointments} /></div>;
 };
 
 export default page;
