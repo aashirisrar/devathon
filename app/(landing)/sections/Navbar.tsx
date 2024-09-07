@@ -36,7 +36,7 @@ const Navbar = () => {
           <nav className="hidden md:flex gap-6 text-black/60 items-center">
             <Link href="#">About</Link>
             <Link href="#product">Features</Link>
-            <Link href="#pricing">Pricing</Link>
+            <Link href="#pricing">Stats</Link>
             <Link href="#testimonials">Testimonials</Link>
             <Link href="#">Help</Link>
             <Button

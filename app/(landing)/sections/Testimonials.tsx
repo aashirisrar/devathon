@@ -14,58 +14,58 @@ import avatar9 from "@/public/assets/avatar-9.png";
 
 const testimonials = [
   {
-    text: "As a seasoned designer always on the lookout for innovative tools, Framer.com instantly grabbed my attention.",
+    text: "Implementing this Patient Management System has greatly improved our clinic's efficiency. Appointments are seamlessly managed!",
     imageSrc: avatar1,
-    name: "Jamie Rivera",
-    username: "@jamietechguru00",
+    name: "Dr. Emily Watson",
+    username: "@drwatson",
   },
   {
-    text: "Our team's productivity has skyrocketed since we started using this tool. ",
+    text: "This tool has reduced our administrative workload significantly. We can now focus more on providing quality patient care.",
     imageSrc: avatar2,
-    name: "Josh Smith",
-    username: "@jjsmith",
+    name: "Nurse James Miller",
+    username: "@nursejmiller",
   },
   {
-    text: "This app has completely transformed how I manage my projects and deadlines.",
+    text: "Managing patient records and accessing patient histories has never been this easy. It's a game-changer for our hospital.",
     imageSrc: avatar3,
-    name: "Morgan Lee",
-    username: "@morganleewhiz",
+    name: "Dr. Olivia Turner",
+    username: "@drturnerolivia",
   },
   {
-    text: "I was amazed at how quickly we were able to integrate this app into our workflow.",
+    text: "I love how intuitive the system is. Even the non-tech staff picked it up quickly!",
     imageSrc: avatar4,
-    name: "Casey Jordan",
-    username: "@caseyj",
+    name: "Laura Hernandez",
+    username: "@laurahernandez",
   },
   {
-    text: "Planning and executing events has never been easier. This app helps me keep track of all the moving parts, ensuring nothing slips through the cracks.",
+    text: "The reporting features have made it so much easier to track patient outcomes and improve overall care quality.",
     imageSrc: avatar5,
-    name: "Taylor Kim",
-    username: "@taylorkimm",
+    name: "Dr. Michael Brown",
+    username: "@drmichaelbrown",
   },
   {
-    text: "The customizability and integration capabilities of this app are top-notch.",
+    text: "Patient data is well-organized and secure. We've streamlined many of our hospital operations thanks to this system.",
     imageSrc: avatar6,
-    name: "Riley Smith",
-    username: "@rileysmith1",
+    name: "Nurse Sarah Lee",
+    username: "@nursarahlee",
   },
   {
-    text: "Adopting this app for our team has streamlined our project management and improved communication across the board.",
+    text: "Tracking patient visits, lab results, and prescriptions in one place has saved us so much time.",
     imageSrc: avatar7,
-    name: "Jordan Patels",
-    username: "@jpatelsdesign",
+    name: "Dr. John Williams",
+    username: "@drwilliams",
   },
   {
-    text: "With this app, we can easily assign tasks, track progress, and manage documents all in one place.",
+    text: "We were able to integrate this system seamlessly with our existing hospital software. It’s extremely flexible.",
     imageSrc: avatar8,
-    name: "Sam Dawson",
-    username: "@dawsontechtips",
+    name: "IT Specialist Karen Thompson",
+    username: "@karen_it",
   },
   {
-    text: "Its user-friendly interface and robust features support our diverse needs.",
+    text: "Our patient satisfaction scores have gone up since implementing this system. Patients love the online appointment booking feature.",
     imageSrc: avatar9,
-    name: "Casey Harper",
-    username: "@casey09",
+    name: "Dr. Anna Roberts",
+    username: "@annaroberts",
   },
 ];
 
@@ -76,9 +76,9 @@ export const Testimonials = () => {
   return (
     <section id="testimonials" className="bg-white px-5 lg:pb-[96px]">
       <Heading
-        tagTitle="Testimonials"
-        heading="What our users say"
-        subHeading="From intuitive design to powerful features, our saas has become an essential tool for users around the world."
+        tagTitle="    "
+        heading="What our healthcare professionals say"
+        subHeading="From improved patient management to streamlined processes, our system has become indispensable to healthcare providers worldwide."
       />
       <div className="h-[750px] flex flex-row gap-6 mt-10 justify-center [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)]">
         <TestimonialCardColumn
