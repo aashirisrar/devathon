@@ -1,7 +1,11 @@
 import React from "react";
 
+import { getCurrentUser } from "@/app/actions/getCurrentUser"
+import { getAppointments } from "@/app/actions/getAppointments"
+
 const page = async () => {
-  const appointments = await getAppointments();
+  const currentUser = await getCurrentUser();
+  const appointments = await getAppointments(currentUser?.id);
 
   return <div><AppointmentClient appointments={appointments} /></div>;
 };

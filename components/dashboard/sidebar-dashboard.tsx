@@ -46,9 +46,9 @@ export const routes = [
     href: "/patients",
   },
   {
-    label: "Settings",
+    label: "Profile",
     icon: Settings,
-    href: "/settings",
+    href: "/profile",
   },
 ];
 
