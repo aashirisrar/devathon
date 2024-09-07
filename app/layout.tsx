@@ -6,7 +6,6 @@ import ToasterProvider from "@/app/providers/ToasterProvider";
 
 import LoginModal from "@/components/modals/LoginModal";
 import RegisterModal from "@/components/modals/RegisterModal";
-import { ProModal } from "@/components/dashboard/pro-modal";
 
 import { cn } from "@/lib/utils";
 
@@ -28,7 +27,6 @@ export default async function RootLayout({
         <ToasterProvider />
         <LoginModal />
         <RegisterModal />
-        <ProModal />
         {children}
       </body>
     </html>

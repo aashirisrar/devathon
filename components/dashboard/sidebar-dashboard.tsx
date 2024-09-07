@@ -15,16 +15,8 @@ import { signOut } from "next-auth/react";
 
 import { cn } from "@/lib/utils";
 
-import { useProModal } from "@/app/hooks/useProModal";
-
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
+
 import Avatar from "../Avatar";
 
 import { SafeUser } from "@/types";
@@ -63,7 +55,6 @@ const SidebarDashboard: React.FC<SidebarDashboardProps> = ({
 }) => {
   const [open, setOpen] = useState(false);
 
-  const proModal = useProModal();
   const pathName = usePathname();
 
   const toggleSignOut = () => {
@@ -104,16 +95,14 @@ const SidebarDashboard: React.FC<SidebarDashboardProps> = ({
           ))}
         </nav>
       </div>
-      {currentUser?.username && (
+      {currentUser?.email && (
         <div className="cursor-pointer shadow-sm border mx-4 mb-3 mt-auto p-3 bg-card rounded-lg relative">
           <div
             onClick={toggleSignOut}
             className="flex items-center justify-start gap-2"
           >
             <Avatar src={currentUser?.image} />
-            <div className="truncate font-semibold">
-              @{currentUser?.username}
-            </div>
+            <div className="truncate font-semibold">@{currentUser?.email}</div>
           </div>
           <div
             onClick={() => signOut()}

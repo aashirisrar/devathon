@@ -15,13 +15,7 @@ import { useProModal } from "@/app/hooks/useProModal";
 
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
+
 import Avatar from "../Avatar";
 
 interface NavbarDashboardProps {
@@ -36,8 +30,6 @@ const NavbarDashboard: React.FC<NavbarDashboardProps> = ({
   const pathName = usePathname();
 
   const [open, setOpen] = useState(false);
-
-  const proModal = useProModal();
 
   const toggleSignOut = () => {
     setOpen(!open);
@@ -77,7 +69,7 @@ const NavbarDashboard: React.FC<NavbarDashboardProps> = ({
               </Link>
             ))}
           </nav>
-          {currentUser?.username && (
+          {currentUser?.email && (
             <div
               className={cn(
                 "cursor-pointer shadow-sm border mb-3 p-3 bg-card rounded-lg relative",
@@ -90,7 +82,7 @@ const NavbarDashboard: React.FC<NavbarDashboardProps> = ({
               >
                 <Avatar src={currentUser?.image} />
                 <div className="truncate font-semibold">
-                  @{currentUser?.username}
+                  @{currentUser?.email}
                 </div>
               </div>
               <div
