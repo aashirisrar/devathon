@@ -10,7 +10,7 @@ const PatientClient: React.FC<PatientClientProps> = ({ patients }) => {
   return (
     <div>
       {patients?.map((patient) => (
-        <div>{patient.id}</div>
+        <div>{patient}</div>
       ))}
     </div>
   );

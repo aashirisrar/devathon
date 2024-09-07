@@ -51,7 +51,7 @@ export const Footer = () => {
             <BsYoutube className="w-6 h-6" />
           </Link>
         </div>
-        <div>© 2024 Portfolio Inc. All rights reserved.</div>
+        <div>© 2024 Patient Inc. All rights reserved.</div>
       </div>
     </section>
   );
